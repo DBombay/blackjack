@@ -95,14 +95,15 @@ class Blackjack
         elsif dealer_hand.calculate > 21
           print "\nDealer has #{dealer_hand.calculate}! Dealer busts! You win!"
           @dealer_playing = false
-          return
         else
+          return
         end
       end
-    end
-    print "\n\nDealer's cards are: "
-    dealer_hand.cards.each do |card|
-      print " " + card.look
+      print "\n\nDealer's cards are: "
+      dealer_hand.cards.each do |card|
+        print " " + card.look
+      end
+      @dealer_playing = false
     end
   end
 
