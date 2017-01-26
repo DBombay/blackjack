@@ -18,6 +18,11 @@ class Blackjack
     @dealer_playing = true
   end
 
+  # def stop_playing
+  #   @player_playing = false
+  #   @player_playing = false
+  # end
+
   def blackjack?
     # Check for 'Blackjack' for dealer and player
     if dealer_hand.calculate == 21 && player_hand.calculate != 21
@@ -122,10 +127,12 @@ class Blackjack
     end
   end
 
-  game = Blackjack.new
-  game.intro
-  game.player_turn
-  game.dealer_turn
-  game.outro
+  def run
+    game = Blackjack.new
+    game.intro
+    game.player_turn
+    game.dealer_turn
+    game.outro
+  end
 
 end

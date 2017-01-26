@@ -1,5 +1,8 @@
 require "spec_helper"
 
+#For these tests to work correctly, the @cards attribute in Hand.rb *must*
+#be set to attr_accessor
+
 RSpec.describe Hand do
   let (:shoe) { Deck.new }
   let (:dealer) { Hand.new( [Card.new("A", "♠").look,Card.new("K", "♠").look]) }
