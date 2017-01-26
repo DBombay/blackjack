@@ -96,7 +96,6 @@ class Blackjack
           print "\nDealer has #{dealer_hand.calculate}! Dealer busts! You win!"
           @dealer_playing = false
         else
-          return
         end
       end
       print "\n\nDealer's cards are: "
