@@ -62,7 +62,7 @@ class Blackjack
         sleep 0.8
         print "\nYou are dealt #{player_hand.cards.last.look}."
         if player_hand.calculate > 21
-          print "\nYou bust. You lose..."
+          print "\nYou bust with a score of #{player_hand.calculate}. You lose..."
           @player_playing = false
           @dealer_playing = false
         end
