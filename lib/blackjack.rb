@@ -107,15 +107,17 @@ class Blackjack
   end
 
   def outro
-    if @player_playing == false && @dealer_playing == false
-      print "\n\nYour hand has #{player_hand.calculate} points and the dealer's hand has #{dealer_hand.calculate} points..."
-      sleep 1
-      if dealer_hand.calculate > player_hand.calculate
-        print "\nYou lose..."
-      elsif dealer_hand.calculate < player_hand.calculate
-        print "\nYou win!"
-      else
-        print "You and the dealer have the same score. Push, it's a tie!"
+    if player_hand.calculate < 22 && dealer_hand.calculate < 22
+      if @player_playing == false && @dealer_playing == false
+        print "\n\nYour hand has #{player_hand.calculate} points and the dealer's hand has #{dealer_hand.calculate} points..."
+        sleep 1
+        if dealer_hand.calculate > player_hand.calculate
+          print "\nYou lose..."
+        elsif dealer_hand.calculate < player_hand.calculate
+          print "\nYou win!"
+        else
+          print "You and the dealer have the same score. Push, it's a tie!"
+        end
       end
     end
   end
