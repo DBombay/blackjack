@@ -112,8 +112,8 @@ class Blackjack
   end
 
   def outro
-    if player_hand.calculate < 22 && dealer_hand.calculate < 22
-      if @player_playing == false && @dealer_playing == false
+    if @player_playing == false && @dealer_playing == false
+      if player_hand.calculate < 22 && dealer_hand.calculate < 22
         print "\n\nYour hand has #{player_hand.calculate} points and the dealer's hand has #{dealer_hand.calculate} points..."
         sleep 1
         if dealer_hand.calculate > player_hand.calculate
@@ -126,13 +126,10 @@ class Blackjack
       end
     end
   end
-
-  def run
-    game = Blackjack.new
-    game.intro
-    game.player_turn
-    game.dealer_turn
-    game.outro
-  end
-
 end
+
+  game = Blackjack.new
+  game.intro
+  game.player_turn
+  game.dealer_turn
+  game.outro

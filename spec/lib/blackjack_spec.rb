@@ -54,5 +54,22 @@ RSpec.describe Blackjack do
     let (:ace) { Card.new("A", "♠") }
     let (:king) { Card.new("K", "♠") }
     let (:nine) { Card.new("9", "♠") }
+
+    it "Doesn't start if the player isn't playing" do
+      game.player_playing = false
+      expect(game.player_turn).to eq (nil)
+    end
+
+    it "Doesn't start if the dealer isn't playing" do
+      game.dealer_playing = false
+      expect(game.player_turn).to eq (nil)
+    end
+
+    it "Accepts the input 'H' and gives a card to the player" do
+      game.player_hand.cards = [nine, ace]
+      game.intro
+      expect(game.player_hand.cards.count).to eq (3)
+    end
+
   end
 end
