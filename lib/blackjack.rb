@@ -9,19 +9,17 @@ class Blackjack
 #Create deck of 52 cards // Done in Deck.rb
 #Shuffle the deck // Done in Deck.rb
   attr_accessor :player_playing, :dealer_playing
-  attr_reader :player_hand, :dealer_hand, :deck
+  attr_reader :player_hand, :dealer_hand, :deck, :wins, :losses, :ties
   def initialize
     @deck = Deck.new
     @player_hand = Hand.new(@deck.deal(2))
     @dealer_hand = Hand.new(@deck.deal(2))
     @player_playing = true
     @dealer_playing = true
+    @wins = 0
+    @losses = 0
+    @ties = 0
   end
-
-  # def stop_playing
-  #   @player_playing = false
-  #   @player_playing = false
-  # end
 
   def blackjack?
     # Check for 'Blackjack' for dealer and player
@@ -29,14 +27,17 @@ class Blackjack
       print "\nDealer Blackjack! You lose..."
       @dealer_playing = false
       @player_playing = false
+      @losses += 1
     elsif dealer_hand.calculate != 21 && player_hand.calculate == 21
       print "\nPlayer Blackjack! You win!"
       @dealer_playing = false
       @player_playing = false
+      @wins += 1
     elsif dealer_hand.calculate == 21 && player_hand.calculate == 21
       print "\nYou and the Dealer both have Blackjack. Push..."
       @dealer_playing = false
       @player_playing = false
+      @ties += 1
     else
       print "\nNeither the dealer nor the player has a blackjack.\n"
       @dealer_playing = true
@@ -70,6 +71,7 @@ class Blackjack
           print "\nYou bust with a score of #{player_hand.calculate}. You lose..."
           @player_playing = false
           @dealer_playing = false
+          @losses += 1
         end
       elsif response.upcase == "S"
         print "\n\nYou stay. Your cards are: "
@@ -100,6 +102,7 @@ class Blackjack
         elsif dealer_hand.calculate > 21
           print "\nDealer has #{dealer_hand.calculate}! Dealer busts! You win!"
           @dealer_playing = false
+          @wins += 1
         else
         end
       end
@@ -118,18 +121,30 @@ class Blackjack
         sleep 1
         if dealer_hand.calculate > player_hand.calculate
           print "\nYou lose..."
+          @losses += 1
         elsif dealer_hand.calculate < player_hand.calculate
           print "\nYou win!"
+          @wins += 1
         else
           print "You and the dealer have the same score. Push, it's a tie!"
+          @ties += 1
         end
       end
     end
   end
 end
 
+playing = true
+while playing
   game = Blackjack.new
   game.intro
   game.player_turn
   game.dealer_turn
   game.outro
+  puts " You have #{game.wins} wins, #{game.losses} losses, and #{game.ties} ties. Would you like to play again? (y/n)"
+  response = gets.chomp
+  if response.downcase != "y"
+    puts "Thanks for playing!"
+    playing = false
+  end
+end
